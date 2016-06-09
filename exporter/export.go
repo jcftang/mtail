@@ -66,6 +66,10 @@ func New(o Options) (*Exporter, error) {
 		o := pushOptions{"udp", *statsdHostPort, metricToStatsd, statsdExportTotal, statsdExportSuccess}
 		e.RegisterPushExport(o)
 	}
+	if *logentriesToken != "" {
+		o := pushOptions{"udp", *logentriesHostPort, metricToLogentries, logentriesExportTotal, logentriesExportSuccess}
+		e.RegisterPushExport(o)
+	}
 
 	return e, nil
 }
